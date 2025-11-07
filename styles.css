@@ -1,0 +1,292 @@
+/* 🌿 CreditSmart - Hoja de estilos personalizada
+   Autora: Claudia Cabrera
+   Tema: Verde esmeralda + gris claro
+   Fecha: Noviembre 2025
+*/
+
+/* -------- VARIABLES DE COLOR -------- */
+:root {
+  --color-primario: #c105fa;     
+  --color-secundario: #9907d3;   
+  --color-fondo: #be2beb;        
+  --color-texto: #070707;        
+  --color-blanco: #d086f5;       
+}
+
+
+/* -------- ESTILOS GENERALES -------- */
+* {
+  box-sizing: border-box;
+  font-family: "Poppins", Arial, sans-serif;
+}
+
+body {
+  background-color: var(--color-fondo);
+  color: var(--color-texto);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+.container {
+  width: 90%;
+  max-width: 1100px;
+  margin: auto;
+}
+
+/* -------- ENCABEZADO Y MENÚ -------- */
+header {
+  background-color: var(--color-primario);
+  padding: 1rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 3px 8px rgb(171, 82, 245);
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  width: 50px;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+nav a {
+  color: var(--color-blanco);
+  font-weight: 500;
+  text-decoration: none;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  transition: 0.3s;
+}
+
+nav a:hover,
+nav a.active {
+  background-color: var(--color-secundario);
+  color: var(--color-texto);
+}
+
+/* -------- HERO (BANNER) -------- */
+.hero-section {
+  background: linear-gradient(to right, var(--color-primario), var(--color-secundario));
+  color: var(--color-blanco);
+  text-align: center;
+  padding: 4rem 1rem;
+  border-radius: 0 0 40px 40px;
+  box-shadow: 0 6px 14px rgb(166, 61, 192);
+  margin-bottom: 2rem;
+}
+
+.hero-section h2 {
+  font-size: 3.3rem;
+  margin-bottom: 2rem;
+}
+
+.hero-section p {
+  font-size: 1.1rem;
+  max-width: 700px;
+  margin: auto;
+}
+
+/* 🌟 Hero Titles */
+.hero-title {
+  font-size: 3rem;        /* ← Título mucho más grande */
+  font-weight: 800;       /* Más grueso */
+  margin-bottom: 1rem;
+  color: var(--color-blanco);
+}
+
+.hero-subtitle {
+  font-size: 1.2rem;      /* ← Más pequeño que el título */
+  font-weight: 300;       /* Suave para contraste */
+  max-width: 700px;
+  margin: 0 auto 1.5rem;
+  color: var(--color-blanco);
+}
+
+.hero-buttons {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+}
+
+
+/* -------- BOTONES -------- */
+.btn-principal,
+.btn-secundario {
+  padding: .8rem 1.5rem;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+  border: none;
+  transition: .3s;
+}
+
+.btn-principal {
+  background: var(--color-primario);
+  color: var(--color-blanco);
+}
+
+.btn-principal:hover {
+  background: var(--color-secundario);
+  color: var(--color-texto);
+}
+
+.btn-secundario {
+  background: var(--color-blanco);
+  color: var(--color-primario);
+  border: 2px solid var(--color-blanco);
+}
+
+.btn-secundario:hover {
+  background: transparent;
+  border: 2px solid var(--color-blanco);
+  color: var(--color-blanco);
+}
+
+/* -------- TARJETAS DE CRÉDITO -------- */ 
+.credits-grid 
+ { display: grid; 
+  grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+   gap: 1.5rem; 
+  } 
+  .credit-card { background-color: #c940f3; 
+   border-left: 6px solid var(--color-primario);
+   border-radius: 14px; 
+   padding: 1.5rem; 
+   box-shadow: 0 6px 12px rgb(228, 88, 247); 
+   transition: 0.3s; 
+  } 
+  .credit-card:hover { 
+  transform: translateY(-6px); 
+}
+
+/* -------- SIMULADOR -------- */
+.simulador-section {
+  margin-top: 2rem;
+}
+
+/* -------- FORMULARIO SOLICITAR -------- */
+.solicitar-section {
+  margin-top: 2rem;
+  padding: 2rem;
+  background: var(--color-blanco);
+  border-radius: 14px;
+  box-shadow: 0 4px 10px rgb(161, 46, 206);
+}
+
+/* -------- SECCIÓN SOBRE -------- */
+.sobre-section {
+  padding: 3rem 1rem;
+  background: var(--color-blanco);
+  margin-top: 3rem;
+}
+
+.ventajas-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px,1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.ventaja {
+  background: #d137f0;
+  padding: 1.5rem;
+  border-radius: 12px;
+  text-align: center;
+}
+
+/* -------- CONTACTO -------- */
+.contacto-section {
+  background: #d877f0;
+  padding: 3rem 1rem;
+  margin-top: 3rem;
+}
+
+.contacto-form {
+  background: var(--color-blanco);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgb(187, 68, 241);
+}
+
+/* -------- CENTRADO GLOBAL DE CONTENIDO -------- */
+
+/* Centrar textos de secciones */
+.hero-section,
+.credits-section,
+.sobre-section,
+.contacto-section {
+  text-align: center;
+}
+
+/* Centrar tarjetas (el contenido interno) */
+.credit-card {
+  text-align: center;
+}
+
+/* Centrar formulario solo títulos, dejar campos alineados */
+.solicitar-section h2,
+.solicitar-section p {
+  text-align: center;
+}
+
+/* Centrar la lista de navegación (pero no cambiar su flex) */
+nav ul {
+  justify-content: center;
+}
+
+/* Asegurar subtítulos queden centrados */
+.credits-subtitulo {
+  text-align: center !important;
+}
+/* Logo superior */
+.logo-superior {
+  width: 90px;
+  display: block;
+  margin: 1rem 0 0.5rem 1rem;
+}
+
+/* Encabezado general */
+.main-header {
+  text-align: left;
+  padding: 0 1rem;
+}
+
+/* Navegación */
+nav ul {
+  display: flex;
+  gap: 1.2rem;
+  list-style: none;
+  margin: 0;
+  padding: 0 0 1rem 1rem;
+}
+
+nav a {
+  text-decoration: none;
+  font-weight: 500;
+  color: var(--color-texto);
+  transition: 0.3s;
+}
+
+nav a:hover,
+nav a.active {
+  color: var(--color-primario);
+}
+
+/* -------- RESPONSIVE -------- */
+@media (max-width: 600px) {
+  .hero-section h2 { font-size: 1.6rem; }
+  nav ul { flex-direction: column; }
+}

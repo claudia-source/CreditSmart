@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solicita tu crédito - CreditSmart</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <!-- ✅ Encabezado principal -->
+   <header class="main-header">
+  <img src="img/logo.png.png" alt="Logo CreditSmart" class="logo-superior">
+<li><a href="solicitar.html" class="active">Solicitar</a></li>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="simulador.html">Simulador</a></li>
+      <li><a href="solicitar.html">Solicitar</a></li>
+    </ul>
+  </nav>
+</header>
+  <header class="main-header">
+    <div class="container header-inner">
+      <h1 class="logo">💳 CreditSmart</h1>
+      <nav class="navbar">
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="simulador.html">Simulador</a></li>
+          <li><a href="solicitar.html" class="active">Solicitar crédito</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ✅ Contenido principal -->
+  <main class="container">
+    <section class="solicitar-section">
+      <h2>Formulario de solicitud</h2>
+      <p>Completa tus datos para iniciar la solicitud. Los campos marcados con <strong>*</strong> son obligatorios.</p>
+
+      <!-- 🧾 Formulario -->
+      <form id="formCredito" class="formulario-credito" onsubmit="return validarSolicitud();">
+
+        <!-- 🔹 Datos personales -->
+        <fieldset>
+          <legend>Información personal</legend>
+          <div class="form-grid">
+            <label>Nombre completo *
+              <input type="text" id="nombre" name="nombre" placeholder="Ej: Claudia Cabrera" required>
+            </label>
+
+            <label>Documento de identidad *
+              <input type="number" id="documento" name="documento" placeholder="Ej: 1122334455" required>
+            </label>
+
+            <label>Correo electrónico *
+              <input type="email" id="correo" name="correo" placeholder="correo@ejemplo.com" required>
+            </label>
+
+            <label>Teléfono de contacto *
+              <input type="tel" id="telefono" name="telefono" placeholder="+57 3XX XXX XXXX" pattern="[0-9+\s\-]+" required>
+            </label>
+          </div>
+        </fieldset>
+
+        <!-- 🔹 Datos del crédito -->
+        <fieldset>
+          <legend>Detalles del crédito</legend>
+          <div class="form-grid">
+            <label>Tipo de crédito *
+              <select id="tipoCredito" name="tipoCredito" required>
+                <option value="">-- Selecciona una opción --</option>
+                <option>Crédito de Vivienda</option>
+                <option>Crédito Vehicular</option>
+                <option>Crédito Educativo</option>
+                <option>Crédito Personal</option>
+                <option>Crédito Empresarial</option>
+                <option>Crédito PyME</option>
+              </select>
+            </label>
+
+            <label>Monto solicitado (COP) *
+              <input type="number" id="monto" name="monto" min="500000" step="50000" placeholder="Ej: 10000000" required>
+            </label>
+
+            <label>Plazo (meses) *
+              <input type="number" id="plazo" name="plazo" min="6" max="240" step="6" placeholder="Ej: 36" required>
+            </label>
+
+            <label>Destino del crédito *
+              <textarea id="destino" name="destino" rows="3" placeholder="Ej: Remodelar vivienda, comprar vehículo..." required></textarea>
+            </label>
+          </div>
+        </fieldset>
+
+        <!-- 🔹 Información laboral -->
+        <fieldset>
+          <legend>Situación laboral</legend>
+          <div class="form-grid">
+            <label>Empresa
+              <input type="text" id="empresa" name="empresa" placeholder="Ej: Soluciones Financieras S.A.S.">
+            </label>
+
+            <label>Cargo
+              <input type="text" id="cargo" name="cargo" placeholder="Ej: Administradora de proyectos">
+            </label>
+
+            <label>Ingresos mensuales (COP)
+              <input type="number" id="ingresos" name="ingresos" placeholder="Ej: 2500000">
+            </label>
+          </div>
+        </fieldset>
+
+        <!-- 🔹 Botones -->
+        <div class="acciones-formulario">
+          <button type="submit" class="btn-principal">Enviar solicitud</button>
+          <button type="reset" class="btn-secundario">Limpiar campos</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <!-- ✅ Pie de página -->
+  <footer class="footer">
+    <p>© 2025 CreditSmart | Desarrollado por Claudia Cabrera</p>
+  </footer>
+
+  <!-- 💡 Script con validaciones -->
+  <script>
+    // Validación personalizada del formulario
+    function validarSolicitud() {
+      const nombre = document.getElementById("nombre").value.trim();
+      const email = document.getElementById("correo").value.trim();
+      const monto = document.getElementById("monto").value;
+
+      if (nombre === "" || email === "" || monto === "") {
+        alert("⚠️ Por favor, completa todos los campos obligatorios marcados con *");
+        return false;
+      }
+
+      alert("✅ Tu solicitud fue enviada con éxito. Gracias por confiar en CreditSmart.");
+      document.getElementById("formCredito").reset();
+      return false; // evita recargar la página
+    }
+
+    // Llenar automáticamente el tipo de crédito si viene desde el simulador
+    const params = new URLSearchParams(window.location.search);
+    const tipo = params.get("tipo");
+    if (tipo) {
+      document.addEventListener("DOMContentLoaded", () => {
+        document.getElementById("tipoCredito").value = tipo;
+      });
+    }
+  </script>
+</body>
+</html>

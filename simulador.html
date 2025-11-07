@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simulador de Créditos - CreditSmart</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <!-- Encabezado -->
+   <header class="main-header">
+  <img src="img/logo.png.png" alt="Logo CreditSmart" class="logo-superior">
+<li><a href="simulador.html" class="active">Simulador</a></li>
+
+  <nav>
+    <ul>
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="simulador.html">Simulador</a></li>
+      <li><a href="solicitar.html">Solicitar</a></li>
+    </ul>
+  </nav>
+</header>
+
+  <!-- Contenido principal -->
+  <main class="container">
+    <section class="simulador-section">
+      <h2>Simulador de Créditos</h2>
+      <p>Filtra los productos según el monto o busca por palabra clave (por ejemplo: vivienda, vehículo, libre inversión).</p>
+
+      <!-- Formulario de búsqueda -->
+      <form id="filtroForm" class="filtro-form">
+        <input type="text" id="buscar" placeholder="Buscar crédito..." aria-label="Buscar crédito">
+        <select id="rangoMonto" aria-label="Seleccionar rango de monto">
+          <option value="todos">Todos los montos</option>
+          <option value="bajo">Hasta $10M</option>
+          <option value="medio">$10M - $100M</option>
+          <option value="alto">Más de $100M</option>
+        </select>
+        <button type="submit" class="btn-primary">Aplicar filtros</button>
+      </form>
+
+      <!-- Resultados -->
+      <div id="resultados" class="credits-grid">
+        <!-- Aquí se insertarán las tarjetas con JavaScript -->
+      </div>
+    </section>
+  </main>
+
+  <!-- Pie de página -->
+  <footer class="footer">
+    <p>© 2025 CreditSmart | Proyecto de Diseño de Interfaces Web</p>
+  </footer>
+
+  <!-- Script del simulador -->
+  <script>
+    // Datos estáticos de los créditos
+    const creditos = [
+      { nombre: "Crédito Hipotecario", descripcion: "Adquiere tu vivienda con cuotas cómodas y tasas preferenciales.", tasa: "1.2% M.V.", monto: 400000000, plazo: "240 meses" },
+      { nombre: "Crédito de Vehículo", descripcion: "Da el paso hacia tu nuevo carro, con financiación rápida y segura.", tasa: "1.0% M.V.", monto: 100000000, plazo: "84 meses" },
+      { nombre: "Crédito Educativo", descripcion: "Impulsa tu futuro académico con un crédito pensado para ti.", tasa: "0.9% M.V.", monto: 20000000, plazo: "60 meses" },
+      { nombre: "Crédito Libre Inversión", descripcion: "Tú decides cómo invertir tu dinero, sin límites ni condiciones.", tasa: "1.4% M.V.", monto: 50000000, plazo: "60 meses" },
+      { nombre: "Crédito Empresarial", descripcion: "Haz crecer tu negocio con un crédito diseñado para emprendedores.", tasa: "1.3% M.V.", monto: 500000000, plazo: "120 meses" },
+      { nombre: "Crédito PyME", descripcion: "Potencia las oportunidades de tu PyME con condiciones flexibles y tasas preferenciales.", tasa: "1.1% M.V.", monto: 200000000, plazo: "96 meses" }
+    ];
+
+    // Elementos del DOM
+    const resultados = document.getElementById('resultados');
+    const form = document.getElementById('filtroForm');
+    const inputBuscar = document.getElementById('buscar');
+    const selectMonto = document.getElementById('rangoMonto');
+
+    // Mostrar todos los créditos al cargar la página
+    mostrarCreditos(creditos);
+
+    // Evento del formulario
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      filtrarCreditos();
+    });
+
+    // Función para mostrar tarjetas
+    function mostrarCreditos(lista) {
+      resultados.innerHTML = "";
+      if (lista.length === 0) {
+        resultados.innerHTML = "<p>No se encontraron resultados.</p>";
+        return;
+      }
+
+      lista.forEach(c => {
+        const tarjeta = document.createElement('div');
+        tarjeta.classList.add('credit-card');
+        tarjeta.innerHTML = `
+          <div class="card-header">
+            <h4>${c.nombre}</h4>
+            <p>${c.descripcion}</p>
+          </div>
+          <div class="details">
+            <div class="detail-item"><span class="label">Tasa:</span><span class="value">${c.tasa}</span></div>
+            <div class="detail-item"><span class="label">Monto:</span><span class="value">$${(c.monto/1000000)}M</span></div>
+            <div class="detail-item"><span class="label">Plazo:</span><span class="value">${c.plazo}</span></div>
+          </div>
+          <a href="solicitar.html"><button class="btn-primary">Solicitar</button></a>
+        `;
+        resultados.appendChild(tarjeta);
+      });
+    }
+
+    // Función para filtrar por texto y monto
+    function filtrarCreditos() {
+      const texto = inputBuscar.value.toLowerCase();
+      const rango = selectMonto.value;
+
+      const filtrados = creditos.filter(c => {
+        const coincideTexto = c.nombre.toLowerCase().includes(texto) || c.descripcion.toLowerCase().includes(texto);
+        let coincideMonto = true;
+        if (rango === "bajo") coincideMonto = c.monto <= 10000000;
+        else if (rango === "medio") coincideMonto = c.monto > 10000000 && c.monto <= 100000000;
+        else if (rango === "alto") coincideMonto = c.monto > 100000000;
+        return coincideTexto && coincideMonto;
+      });
+
+      mostrarCreditos(filtrados);
+    }
+  </script>
+</body>
+</html>
