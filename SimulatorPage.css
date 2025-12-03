@@ -1,0 +1,72 @@
+.simulador-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 10px;
+}
+
+.simulador-card {
+  width: 380px;
+  padding: 25px;
+  background: white;
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(140, 0, 255, 0.25);
+  text-align: center;
+  border: 2px solid #c77dff;
+}
+
+.simulador-card h2 {
+  color: #6a0dad;
+  margin-bottom: 20px;
+  font-size: 1.6rem;
+}
+
+.simulador-card label {
+  display: block;
+  text-align: left;
+  font-weight: 600;
+  margin-top: 12px;
+  color: #333;
+}
+
+.simulador-card input,
+.simulador-card select {
+  width: 100%;
+  padding: 10px;
+  margin-top: 5px;
+  border-radius: 8px;
+  border: 1px solid #b88af6;
+  font-size: 1rem;
+}
+
+.cuota {
+  margin-top: 18px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #6a0dad;
+}
+
+.btn-simular {
+  width: 100%;
+  margin-top: 18px;
+  padding: 12px;
+  background: #7b2cbf;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-simular:hover {
+  background: #5a189a;
+}
+
+.btn-simular:disabled {
+  background: #c6c6c6;
+  cursor: not-allowed;
+}
+
+
+
