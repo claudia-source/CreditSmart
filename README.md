@@ -1,10 +1,9 @@
 ✅ README.md COMPLETO PARA TU PROYECTO
 
-Copia y pega esto como README.md en tu repositorio:
 
 💳 CreditSmart — Plataforma de simulación y solicitud de créditos
 
-Autora: Claudia Karol Cabrera
+Autora: Claudia Liliana Cabrera Cabezas
 Tecnologías usadas: React + Vite, React Router, CSS Modules y Hooks
 
 📌 Descripción del proyecto
@@ -196,8 +195,5 @@ Métodos de Arrays	✔ (.map .filter .sort)
 Cálculo de cuota	✔ Fórmula EMI funcional
 Estilos	✔ Responsive y ordenados
 
-➡ Tu proyecto cumple completamente la rúbrica.
-
-📌 Licencia
 
 Este proyecto es para fines académicos y educativos.
