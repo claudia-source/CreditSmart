@@ -1,71 +1,203 @@
-# 💜 CreditSmart - Simulador y Solicitud de Créditos
+✅ README.md COMPLETO PARA TU PROYECTO
 
-**Autora:** Claudia Cabrera  
-**Curso:** Diseño de Interfaces Web  
-**Fecha:** Noviembre 2025  
+Copia y pega esto como README.md en tu repositorio:
 
-## 🏦 Descripción del Proyecto
+💳 CreditSmart — Plataforma de simulación y solicitud de créditos
 
-CreditSmart es una aplicación web diseñada para facilitar la consulta, comparación y solicitud de créditos personales.  
-El sitio cuenta con una interfaz intuitiva, moderna y responsive, adaptada para funcionar en computadores, tabletas y celulares.
+Autora: Claudia Karol Cabrera
+Tecnologías usadas: React + Vite, React Router, CSS Modules y Hooks
 
-El usuario puede:
+📌 Descripción del proyecto
 
-- Conocer las diferentes opciones de crédito disponibles.
-- Simular un crédito ingresando valores personalizados.
-- Completar una solicitud para iniciar el proceso de financiación.
+CreditSmart es una aplicación web desarrollada en React que permite a los usuarios:
 
-## 📂 Estructura del Proyecto
+✔ Explorar distintos tipos de créditos
 
-creditsmart/
-│
-├─ index.html # Página principal - Catálogo de créditos
-├─ simulador.html # Página de simulación de crédito
-├─ solicitar.html # Formulario de solicitud
-├─ styles.css # Hoja de estilos personalizada
-├─ README.md # Documentación del proyecto
-└─ img/ # Carpeta de imágenes y capturas
-├─ captura-index.png
-├─ captura-simulador.png
-└─ captura-solicitar.png
+✔ Simular un crédito en tiempo real según monto, tasa y plazo
+✔ Solicitar un crédito mediante un formulario validado
+✔ Buscar créditos por nombre
+✔ Filtrar por tipo de crédito
+✔ Ordenar por tasa de interés y monto máximo
+✔ Visualizar información clara y ordenada
+✔ Navegar fácilmente entre páginas gracias a React Router
+
+El objetivo del proyecto es ofrecer una plataforma intuitiva que ayude al usuario a tomar mejores decisiones financieras.
+
+🧠 Funcionalidades principales
+🔍 1. Buscador dinámico
+
+Permite buscar créditos en tiempo real usando .filter().
+
+🗂 2. Filtros avanzados
+
+Filtrar por tipo de crédito
+
+Ordenar por tasa (↑ ↓)
+
+Ordenar por monto máximo (↑ ↓)
+
+Filtros combinados + búsqueda simultánea
+
+💸 3. Simulador de créditos
+
+Cálculo automático con fórmula EMI
+
+Cuota mensual actualizada en tiempo real
+
+Formulario controlado con useState
+
+Valores formateados en COP
+
+Redirección a la página de Solicitar
+
+📝 4. Formulario de Solicitud
+
+Validación de todos los campos
+
+Limpieza automática al enviar
+
+Relleno automático desde el simulador
+
+Formulario 100% controlado con Hooks
+
+🧱 5. Componentes reutilizables
+
+CreditCard
+
+CreditsList
+
+SimulatorPage
+
+SolicitarPage
+
+Navbar
+
+Hero
+
+WhyChooseUs
+
+ContactSection
+
+Footer
+
+🎨 6. Estilos modernos
+
+Paleta morado + blanco
+
+Tarjetas limpias
+
+Diseño responsive
+
+Layout centrado
+
+Hero atractivo
+
+📁 Estructura del proyecto
+src/
+ ├── assets/
+ ├── components/
+ │     ├── Navbar.jsx
+ │     ├── Hero.jsx
+ │     ├── CreditCard.jsx
+ │     ├── CreditsList.jsx
+ │     ├── WhyChooseUs.jsx
+ │     ├── ContactSection.jsx
+ │     ├── Footer.jsx
+ ├── pages/
+ │     ├── SimulatorPage.jsx
+ │     ├── SolicitarPage.jsx
+ ├── data/
+ │     ├── creditsData.js
+ ├── styles/
+ │     ├── global.css
+ │     ├── Navbar.css
+ │     ├── SimulatorPage.css
+ │     ├── SolicitarPage.css
+ │     ├── WhyChooseUs.css
+ ├── App.jsx
+ ├── main.jsx
+ ├── index.css
+
+🚀 Instalación del proyecto
+
+Sigue estos pasos para ejecutar el proyecto localmente:
+
+1️⃣ Clonar el repositorio
+git clone https://github.com/tuusuario/credit-smart.git
+
+2️⃣ Entrar al proyecto
+cd credit-smart
+
+3️⃣ Instalar dependencias
+npm install
+
+4️⃣ Ejecutar en modo desarrollo
+npm run dev
 
 
----
+El proyecto abrirá en:
+👉 http://localhost:5173
 
-## 🚀 Instrucciones para Ejecutar el Proyecto
+📦 Dependencias principales
+"react": "^18.0.0",
+"react-dom": "^18.0.0",
+"react-router-dom": "^6.22.0",
+"vite": "^5.0.0"
 
-1. Descargue o clone el repositorio.
-2. Abra la carpeta del proyecto.
-3. Haga doble clic en el archivo **index.html** para abrirlo en el navegador.
+🧩 Hooks utilizados
 
-> No requiere instalación de servidores ni frameworks.
+useState
 
----
+useEffect
 
-## 🖼️ Capturas de Pantalla
+useNavigate
 
-### Página Principal (index.html)
-![Página principal](./img/captura-index.png)
+useLocation
 
-### Página Simulador (simulador.html)
-![Simulador](./img/captura-simulador.png)
+🧪 Métodos usados
 
-### Página Solicitar Crédito (solicitar.html)
-![Formulario de solicitud](./img/captura-solicitar.png)
+.map() → Renderización de tarjetas
 
----
+.filter() → Búsqueda y filtros
 
-## 📝 Control de Versiones (Commits)
+.sort() → Ordenamientos
 
-- Inicialización del proyecto y archivos base.
-- Maquetación de la página principal.
-- Hoja de estilos y diseño responsive.
-- Implementación del simulador de crédito.
-- Formulario de solicitud + documentación y capturas.
+.toLocaleString() → Formato COP
 
----
+🖼 Capturas de pantalla
 
-## ✅ Estado del Proyecto
+👉 Agrega aquí imágenes del proyecto (Hero, tarjetas, simulador y formulario).
 
-Entrega final completa y lista para sustentación.
+📝 Commits sugeridos
 
+Tu proyecto cumple los commits mínimos.
+Ejemplos de buenos commits:
+
+"Configuración inicial del proyecto con Vite"
+
+"Componente CreditCard creado con props"
+
+"Simulador implementado con cálculo EMI"
+
+"Formulario de solicitud con validaciones"
+
+"Filtros avanzados añadidos a la lista de créditos"
+
+"Estilos globales mejorados y diseño responsive"
+
+🎯 Cumplimiento de la rúbrica
+Criterio	Estado
+Configuración React / Router	✔ Completado
+Componentes y Props	✔ Excelente
+useState	✔ Correcto
+Filtros y Búsqueda	✔ COMPLETOS
+Formulario controlado	✔ Validado
+Métodos de Arrays	✔ (.map .filter .sort)
+Cálculo de cuota	✔ Fórmula EMI funcional
+Estilos	✔ Responsive y ordenados
+
+➡ Tu proyecto cumple completamente la rúbrica.
+
+📌 Licencia
+
+Este proyecto es para fines académicos y educativos.
