@@ -1,0 +1,108 @@
+.solicitar-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.solicitar-title {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: #6b00b6;
+}
+
+.solicitar-subtitle {
+  margin-bottom: 25px;
+  color: #444;
+}
+
+.solicitar-form {
+  background: white;
+  padding: 30px;
+  border-radius: 18px;
+  box-shadow: 0 8px 20px rgba(120, 0, 180, 0.15);
+}
+
+fieldset {
+  border: 2px solid #e3c8ff;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 25px;
+}
+
+legend {
+  color: #6b00b6;
+  font-weight: bold;
+  padding: 0 10px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 15px;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  font-weight: 600;
+  color: #333;
+}
+
+input,
+select,
+textarea {
+  margin-top: 6px;
+  padding: 12px;
+  border: 2px solid #d8c9ff;
+  border-radius: 10px;
+  font-size: 1rem;
+  transition: 0.3s;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #8b2bff;
+  box-shadow: 0 0 6px rgba(140, 80, 255, 0.3);
+}
+
+textarea {
+  resize: none;
+}
+
+.form-actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+.btn-submit {
+  background: #6b00b6;
+  color: white;
+  padding: 12px 28px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: .3s;
+}
+
+.btn-submit:hover {
+  background: #51008a;
+}
+
+.btn-reset {
+  background: #eee;
+  color: #444;
+  padding: 12px 28px;
+  border-radius: 10px;
+  border: none;
+}
+
+.btn-reset:hover {
+  background: #ddd;
+}
+
+
