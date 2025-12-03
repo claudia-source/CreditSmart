@@ -56,3 +56,16 @@ Incluye:
 git clone https://github.com/TU_USUARIO/credit-smart.git
 cd credit-smart
 ucativos.
+Instalar dependencias:
+
+npm install
+
+
+Ejecutar en modo desarrollo:
+
+npm run dev
+
+
+Abrir en el navegador:
+
+Normalmente: http://localhost:5173/
