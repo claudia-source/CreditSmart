@@ -1,0 +1,32 @@
+.contact-section {
+  padding: 70px 20px;
+  text-align: center;
+  background: #fcfafe;
+  margin-top: 70px;
+  border-radius: 30px 30px 0 0;
+}
+
+.contact-title {
+  font-size: 2.4rem;
+  color: #5B0995;
+  margin-bottom: 15px;
+}
+
+.contact-subtitle {
+  font-size: 1.1rem;
+  margin-bottom: 40px;
+  color: #4a4a4a;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 25px;
+}
+
+.contact-box {
+  background: rgb(230, 205, 249);
+  padding: 25px;
+  border-radius: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+}

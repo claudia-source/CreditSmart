@@ -1,0 +1,13 @@
+.credits-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.5rem;
+  justify-items: center;
+}
+.credit-card {
+  background: #f9f1fb;
+  width: 260px;
+  border-radius: 12px;
+  padding: 1rem;
+  text-align: center;
+}
