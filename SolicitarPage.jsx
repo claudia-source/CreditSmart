@@ -1,5 +1,6 @@
 // src/pages/SolicitarPage.jsx
 import { useState, useEffect } from "react";
+import { guardarSolicitud } from "../firebase/solicitudes";
 import "../styles/SolicitarPage.css";
 
 export default function SolicitarPage() {
@@ -17,71 +18,114 @@ export default function SolicitarPage() {
     ingresos: ""
   });
 
-  const params = new URLSearchParams(window.location.search);
+  const [enviando, setEnviando] = useState(false);
 
-  // COP formatter (miles con puntos)
+  /* ================================
+     FORMATO COP
+  ================================= */
   const formatCOP = (value) => {
+    if (!value) return "";
     return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
   };
 
-  // Prellenar desde simulador
+  /* ================================
+     PRELLENAR DESDE SIMULADOR
+  ================================= */
   useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
     const tipo = params.get("tipo");
-    const monto = params.get("monto")?.replace(/\./g, "");
+    const monto = params.get("monto");
     const plazo = params.get("plazo");
 
     setForm((prev) => ({
       ...prev,
       tipoCredito: tipo || prev.tipoCredito,
-      monto: monto ? formatCOP(monto) : prev.monto,
+      monto: monto ? formatCOP(monto.replace(/\./g, "")) : prev.monto,
       plazo: plazo || prev.plazo
     }));
   }, []);
 
-  // Manejo genérico de inputs
+  /* ================================
+     MANEJO DE INPUTS
+  ================================= */
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    // Formatear monto e ingresos como COP
     if (name === "monto" || name === "ingresos") {
-      const numeric = value.replace(/[^\d]/g, "");
-      return setForm({ ...form, [name]: formatCOP(numeric) });
+      const numeric = value.replace(/\D/g, "");
+      setForm({ ...form, [name]: formatCOP(numeric) });
+      return;
     }
 
     setForm({ ...form, [name]: value });
   };
 
-  // Validación rápida
+  /* ================================
+     VALIDACIÓN
+  ================================= */
   const validateForm = () => {
-    if (!form.nombre || !form.correo || !form.documento || !form.monto)
-      return false;
-    return true;
+    return (
+      form.nombre &&
+      form.documento &&
+      form.correo &&
+      form.telefono &&
+      form.tipoCredito &&
+      form.monto &&
+      form.plazo &&
+      form.destino
+    );
   };
 
-  const handleSubmit = (e) => {
+  /* ================================
+     SUBMIT → FIRESTORE
+  ================================= */
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!validateForm()) {
-      alert("⚠️ Debes completar los campos obligatorios marcados con *");
+      alert("⚠️ Completa todos los campos obligatorios (*)");
       return;
     }
 
-    alert("✅ Solicitud enviada con éxito. Nos contactaremos contigo pronto.");
-    setForm({
-      nombre: "",
-      documento: "",
-      correo: "",
-      telefono: "",
-      tipoCredito: "",
-      monto: "",
-      plazo: "",
-      destino: "",
-      empresa: "",
-      cargo: "",
-      ingresos: ""
-    });
+    setEnviando(true);
+
+    try {
+      console.log("📤 Enviando datos:", form);
+
+      await guardarSolicitud({
+        ...form,
+        monto: form.monto.replace(/\./g, ""),
+        ingresos: form.ingresos.replace(/\./g, ""),
+        createdAt: new Date()
+      });
+
+      alert("✅ Solicitud enviada correctamente");
+
+      setForm({
+        nombre: "",
+        documento: "",
+        correo: "",
+        telefono: "",
+        tipoCredito: "",
+        monto: "",
+        plazo: "",
+        destino: "",
+        empresa: "",
+        cargo: "",
+        ingresos: ""
+      });
+
+    } catch (error) {
+      console.error("❌ Error al guardar:", error);
+      alert("❌ Error al enviar la solicitud");
+    } finally {
+      setEnviando(false);
+    }
   };
 
+  /* ================================
+     RENDER
+  ================================= */
   return (
     <section className="solicitar-container">
       <h2 className="solicitar-title">Solicitud de Crédito</h2>
@@ -95,68 +139,35 @@ export default function SolicitarPage() {
         <fieldset>
           <legend>Información Personal</legend>
           <div className="form-grid">
-
             <label>
               Nombre completo *
-              <input
-                type="text"
-                name="nombre"
-                value={form.nombre}
-                onChange={handleChange}
-                required
-              />
+              <input name="nombre" value={form.nombre} onChange={handleChange} required />
             </label>
 
             <label>
               Documento *
-              <input
-                type="number"
-                name="documento"
-                value={form.documento}
-                onChange={handleChange}
-                required
-              />
+              <input name="documento" value={form.documento} onChange={handleChange} required />
             </label>
 
             <label>
               Correo *
-              <input
-                type="email"
-                name="correo"
-                value={form.correo}
-                onChange={handleChange}
-                required
-              />
+              <input type="email" name="correo" value={form.correo} onChange={handleChange} required />
             </label>
 
             <label>
               Teléfono *
-              <input
-                type="tel"
-                name="telefono"
-                value={form.telefono}
-                onChange={handleChange}
-                pattern="[0-9+\s\-]+"
-                required
-              />
+              <input name="telefono" value={form.telefono} onChange={handleChange} required />
             </label>
-
           </div>
         </fieldset>
 
-        {/* Datos de crédito */}
+        {/* Detalles del crédito */}
         <fieldset>
           <legend>Detalles del Crédito</legend>
           <div className="form-grid">
-
             <label>
               Tipo de crédito *
-              <select
-                name="tipoCredito"
-                value={form.tipoCredito}
-                onChange={handleChange}
-                required
-              >
+              <select name="tipoCredito" value={form.tipoCredito} onChange={handleChange} required>
                 <option value="">Seleccione…</option>
                 <option>Hipotecario</option>
                 <option>Vehicular</option>
@@ -169,87 +180,80 @@ export default function SolicitarPage() {
 
             <label>
               Monto solicitado (COP) *
-              <input
-                type="text"
-                name="monto"
-                value={form.monto}
-                onChange={handleChange}
-                required
-              />
+              <input name="monto" value={form.monto} onChange={handleChange} required />
             </label>
 
             <label>
               Plazo (meses) *
-              <input
-                type="number"
-                name="plazo"
-                value={form.plazo}
-                onChange={handleChange}
-                required
-              />
+              <input name="plazo" value={form.plazo} onChange={handleChange} required />
             </label>
 
             <label>
               Destino del crédito *
-              <textarea
-                name="destino"
-                value={form.destino}
-                onChange={handleChange}
-                required
-              ></textarea>
+              <textarea name="destino" value={form.destino} onChange={handleChange} required />
             </label>
-
           </div>
         </fieldset>
 
-        {/* Datos laborales */}
+        {/* Información Laboral */}
         <fieldset>
           <legend>Situación Laboral</legend>
           <div className="form-grid">
-
             <label>
               Empresa
-              <input
-                type="text"
-                name="empresa"
-                value={form.empresa}
-                onChange={handleChange}
-              />
+              <input name="empresa" value={form.empresa} onChange={handleChange} />
             </label>
 
             <label>
               Cargo
-              <input
-                type="text"
-                name="cargo"
-                value={form.cargo}
-                onChange={handleChange}
-              />
+              <input name="cargo" value={form.cargo} onChange={handleChange} />
             </label>
 
             <label>
               Ingresos mensuales (COP)
-              <input
-                type="text"
-                name="ingresos"
-                value={form.ingresos}
-                onChange={handleChange}
-              />
+              <input name="ingresos" value={form.ingresos} onChange={handleChange} />
             </label>
-
           </div>
         </fieldset>
 
-        {/* Botones */}
+        {/* Acciones */}
         <div className="form-actions">
-          <button type="submit" className="btn-submit">Enviar solicitud</button>
-          <button type="reset" className="btn-reset">Limpiar</button>
-        </div>
+          <button type="submit" className="btn-submit" disabled={enviando}>
+            {enviando ? "Enviando..." : "Enviar solicitud"}
+          </button>
 
+          <button
+            type="button"
+            className="btn-reset"
+            disabled={enviando}
+            onClick={() =>
+              setForm({
+                nombre: "",
+                documento: "",
+                correo: "",
+                telefono: "",
+                tipoCredito: "",
+                monto: "",
+                plazo: "",
+                destino: "",
+                empresa: "",
+                cargo: "",
+                ingresos: ""
+              })
+            }
+          >
+            Limpiar
+          </button>
+        </div>
       </form>
     </section>
   );
 }
+
+
+
+
+
 
 
 
