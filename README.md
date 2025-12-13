@@ -1,192 +1,199 @@
-💳 CreditSmart – Simulador y Solicitud de Créditos
-Nombre del estudiante: CLAUDIA LILIANA CABRERA CABEZAS
+💳 CreditSmart – Plataforma de Créditos Inteligentes
 
-Aplicación web desarrollada en React que permite:
+Estudiante: Claudia Liliana Cabrera Cabezas
+Curso: Desarrollo Web con React
+Actividad: S40 – EA3 Integración con Backend Firebase
 
-Ver diferentes tipos de crédito disponibles.
-Filtrar y ordenar créditos por tipo, tasa, monto y plazo.
-Simular un crédito con cálculo de cuota mensual.
-Diligenciar un formulario para solicitar crédito.
-Navegar entre páginas usando React Router.
-🧩 Descripción del proyecto
-CreditSmart es una aplicación de simulación y solicitud de créditos.
-Incluye:
+📌 Descripción del Proyecto
 
-Página de inicio con:
-Hero de bienvenida
-Filtros y tarjetas de créditos (CreditCard)
-Sección “Por qué elegirnos”
-Sección de contacto
-Página de Simulador:
-Tipo de crédito
-Monto con formato COP
-Plazo en meses
-Cálculo de cuota mensual estimada
-Enlace directo a la página de solicitud
-Página de Solicitar:
-Formulario controlado con useState
-Datos personales, del crédito y laborales
-Validaciones básicas
-Confirmación de envío
-🛠️ Tecnologías utilizadas
-React (componentes funcionales)
-Vite (entorno de desarrollo)
-React Router DOM (navegación entre páginas)
-JavaScript ES6+
-HTML5 y CSS3
-Hooks de React: useState, useEffect
-Métodos de arrays: .map(), .filter(), .sort()
-⚙️ Instrucciones de instalación
-Clonar el repositorio:
-git clone https://github.com/TU_USUARIO/credit-smart.git
-cd credit-smart
-ucativos.
-Instalar dependencias:
+CreditSmart es una aplicación web desarrollada con React que permite a los usuarios:
+
+Visualizar diferentes tipos de créditos disponibles
+
+Simular créditos con cálculo automático de cuota mensual
+
+Realizar solicitudes de crédito mediante un formulario controlado
+
+Almacenar y consultar solicitudes en la nube usando Firebase Firestore
+
+El proyecto implementa conceptos clave de desarrollo frontend moderno y persistencia de datos en la nube, completando el ciclo completo de una aplicación web.
+
+🛠️ Tecnologías Utilizadas
+
+React (Componentes funcionales y Hooks)
+
+React Router DOM (Navegación entre páginas)
+
+Vite (Entorno de desarrollo)
+
+Firebase Firestore (Base de datos NoSQL)
+
+JavaScript (ES6+)
+
+HTML5
+
+CSS3
+
+Git & GitHub
+
+📂 Estructura del Proyecto
+credit-smart/
+│
+├── src/
+│   ├── components/        # Componentes reutilizables
+│   ├── pages/             # Páginas principales
+│   ├── data/              # Datos de créditos
+│   ├── firebase/          # Configuración Firebase
+│   ├── styles/            # Estilos CSS
+│   ├── App.jsx
+│   └── main.jsx
+│
+├── public/
+├── .env.example
+├── .gitignore
+├── package.json
+└── README.md
+
+🚀 Funcionalidades Principales
+✔ Créditos Disponibles
+
+Renderizado dinámico usando .map()
+
+Datos almacenados en creditsData.js
+
+Tarjetas reutilizables con props
+
+✔ Simulador de Crédito
+
+Selección de tipo de crédito
+
+Cálculo automático de cuota mensual
+
+Formato COP con separadores de miles
+
+Redirección automática al formulario de solicitud
+
+✔ Formulario de Solicitud
+
+Formulario 100% controlado con useState
+
+Validaciones de campos obligatorios
+
+Formato automático de montos en COP
+
+Limpieza del formulario tras envío exitoso
+
+✔ Firebase Firestore
+
+Guardado de solicitudes (addDoc)
+
+Consulta de solicitudes (getDocs)
+
+Manejo de errores con try-catch
+
+Variables de entorno seguras
+
+🔐 Seguridad
+
+Las credenciales de Firebase se manejan mediante variables de entorno
+
+Archivo .env excluido del repositorio
+
+Se incluye .env.example sin datos sensibles
+
+⚙️ Instalación y Ejecución
+
+1️⃣ Clonar el repositorio
+
+git clone https://github.com/tu-usuario/credit-smart.git
+
+
+2️⃣ Instalar dependencias
 
 npm install
 
 
-Ejecutar en modo desarrollo:
+3️⃣ Configurar variables de entorno
+Crear un archivo .env en la raíz con:
+
+VITE_FIREBASE_API_KEY=TU_API_KEY
+VITE_FIREBASE_AUTH_DOMAIN=TU_DOMINIO
+VITE_FIREBASE_PROJECT_ID=TU_PROJECT_ID
+VITE_FIREBASE_STORAGE_BUCKET=TU_BUCKET
+VITE_FIREBASE_MESSAGING_SENDER_ID=TU_SENDER_ID
+VITE_FIREBASE_APP_ID=TU_APP_ID
+
+
+4️⃣ Ejecutar la aplicación
 
 npm run dev
 
+🧪 Pruebas Realizadas
 
-Abrir en el navegador:
+Creación de solicitudes desde el formulario
 
-Normalmente: http://localhost:5173/
+Verificación de documentos en Firebase Console
 
-📂 Estructura principal del proyecto
-src/
- ├─ components/
- │   ├─ Navbar.jsx
- │   ├─ Hero.jsx
- │   ├─ CreditsList.jsx
- │   ├─ CreditCard.jsx
- │   ├─ WhyChooseUs.jsx
- │   ├─ ContactSection.jsx
- │   ├─ Footer.jsx
- │
- ├─ pages/
- │   ├─ SimulatorPage.jsx
- │   ├─ SolicitarPage.jsx
- │
- ├─ data/
- │   ├─ creditsData.js
- │
- ├─ styles/
- │   ├─ global.css
- │   ├─ Navbar.css
- │   ├─ SimulatorPage.css
- │   ├─ SolicitarPage.css
- │   ├─ WhyChoose.css
- │
- ├─ App.jsx
- ├─ main.jsx
+Simulación de desconexión para manejo de errores
 
-📌 Funcionalidades clave (relacionadas con la rúbrica)
-✅ Componentes y Props
+Navegación entre páginas
 
-CreditCard recibe title, rate, max, plazo, image como props.
+🎥 Video Demostrativo
 
-CreditsList recorre creditsData con .map() para mostrar tarjetas.
+📹 Duración: 3–4 minutos
+Incluye:
 
-✅ Manejo de Estado (useState)
+Recorrido por la aplicación
 
-Formularios controlados en:
+Uso del simulador
 
-SimulatorPage
+Envío de solicitud
 
-SolicitarPage
+Visualización en Firebase Console
 
-Filtros y ordenamiento controlados en:
+(Agregar enlace al video aquí)
 
-CreditsList
+📸 Capturas de Pantalla
 
-✅ Búsqueda y Filtros Dinámicos
+📷 Pantalla de inicio
+📷 Simulador de crédito
+📷 Formulario de solicitud
+📷 Firebase Console con colecciones
 
-Filtro por tipo de crédito.
+(Agregar imágenes o GIFs aquí)
 
-Orden por:
+📌 Commits Relevantes
 
-Tasa más baja/alta
+Configuración inicial del proyecto con Vite
 
-Monto más bajo/alto
+Componente CreditCard creado con props
 
-Plazo más corto/largo
+Simulador con cálculo de cuota mensual
 
-✅ Formulario Controlado
+Formulario de solicitud con validaciones
 
-Página Solicitar:
+Integración con Firebase Firestore
 
-Campos controlados con useState.
+Lectura de solicitudes desde la base de datos
 
-Validaciones básicas en el submit.
+Estilos responsive actualizados
 
-Uso de preventDefault para evitar recarga.
+✅ Estado del Proyecto
 
-✅ Manipulación de Arrays
+✔ Funcional
+✔ Integrado con Firebase
+✔ Cumple criterios de evaluación
+✔ Listo para sustentación
 
-.map() para listar créditos.
+📚 Créditos
 
-.filter() para filtrar por tipo de crédito.
+Proyecto desarrollado como parte del proceso de aprendizaje en React y Firebase.
+Documentación utilizada:
 
-.sort() para ordenar por tasa, monto y plazo.
+React Docs
 
-✅ Cálculo de Cuota Mensual
+React Router Docs
 
-Fórmula implementada en SimulatorPage.
+Firebase Docs
 
-Actualización dinámica al cambiar monto/plazo/tipo.
-
-Formato de moneda COP.
-
-🖼️ Capturas de pantalla
-
-Agrega aquí tus imágenes reales, por ejemplo:
-
-screenshots/inicio.png – Página de inicio con tarjetas de crédito.
-
-screenshots/simulador.png – Simulador de crédito.
-
-screenshots/solicitar.png – Formulario de solicitud.
-
-Ejemplo de inserción en Markdown:
-
-![Inicio](screenshots/inicio.png)
-![Simulador](screenshots/simulador.png)
-![Solicitar](screenshots/solicitar.png)
-
-🧾 Commits realizados
-
-Ejemplos de commits (recomendado mínimo 8):
-
-git commit -m "Configuración inicial de React con Vite"
-
-git commit -m "Componente CreditCard creado con props"
-
-git commit -m "Listado de créditos y filtros dinámicos"
-
-git commit -m "Simulador de crédito con cálculo de cuota mensual"
-
-git commit -m "Formulario de solicitud con validaciones básicas"
-
-git commit -m "Estilos globales y diseño morado/blanco"
-
-git commit -m "Navegación entre Inicio, Simulador y Solicitar"
-
-git commit -m "Correcciones finales y documentación en README"
-
-
-Con eso cubres TODOS los puntos que te piden del README ✅
-
----
-
-## 5️⃣ Hacer los commits (mínimo 8)
-
-En tu terminal, dentro de la carpeta del proyecto:
-
-```bash
-cd "C:\Users\KAROL DAYANA CABRERA\credit-smart"
-git init
-git add .
-git commit -m "Configuración inicial de React con Vite"
+MDN Web Docs
