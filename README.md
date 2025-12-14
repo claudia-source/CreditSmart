@@ -54,11 +54,6 @@ credit-smart/
 ├── package.json
 └── README.md
 
-yaml
-Copiar código
-
----
-
 ## ⚙️ Instalación y ejecución
 
 1️⃣ Clonar el repositorio:
@@ -66,32 +61,23 @@ Copiar código
 git clone https://github.com/tu-usuario/credit-smart.git
 2️⃣ Entrar al proyecto:
 
-bash
-Copiar código
+
 cd credit-smart
 3️⃣ Instalar dependencias:
 
-bash
-Copiar código
 npm install
 4️⃣ Crear el archivo de variables de entorno:
 
-bash
-Copiar código
 cp .env.example .env
 5️⃣ Ejecutar el proyecto:
 
-bash
-Copiar código
 npm run dev
 🔐 Variables de entorno
 El proyecto utiliza variables de entorno para Firebase.
 Nunca se suben credenciales reales al repositorio.
 
-Ejemplo (.env.example):
+ (.env.example):
 
-env
-Copiar código
 VITE_FIREBASE_API_KEY=xxxx
 VITE_FIREBASE_AUTH_DOMAIN=xxxx
 VITE_FIREBASE_PROJECT_ID=xxxx
@@ -125,7 +111,7 @@ VITE_FIREBASE_APP_ID=xxxx
 🔥 Firebase Firestore – Colección de solicitudes
 
 🎥 Video demostrativo
-📹 Video de demostración (3–4 minutos) donde se muestra:
+(https://drive.google.com/file/d/1yWcvUDp6gKpXyl5r-SpAfZ_8FLY76Gs7/view?usp=sharing)
 
 Navegación de la app
 
@@ -135,7 +121,6 @@ Envío de solicitud
 
 Registro de datos en Firebase Console
 
-(El enlace al video se entrega junto con el repositorio)
 
 🧪 Pruebas realizadas
 Creación de solicitudes
@@ -155,12 +140,7 @@ Firebase se utilizó dentro de los límites del plan gratuito.
 
 © 2025 – CreditSmart | Desarrollado por Claudia Cabrera
 
-yaml
-Copiar código
-
 ---
-
-## ✅ Qué te recomiendo hacer ahora
 
 1️⃣ Crear la carpeta **`screenshots/`**  
 2️⃣ Guardar las imágenes con estos nombres exactos:
