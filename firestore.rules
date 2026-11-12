@@ -1,0 +1,43 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // 🛠️ Funciones auxiliares para validación de la Máquina de Estados
+    function esEstadoValido(estado) {
+      return estado in ['PENDIENTE', 'EN_REVISION', 'APROBADA', 'RECHAZADA'];
+    }
+
+    function esTransicionValida(estadoActual, nuevoEstado) {
+      return (estadoActual == 'PENDIENTE' && nuevoEstado == 'EN_REVISION') ||
+             (estadoActual == 'EN_REVISION' && (nuevoEstado == 'APROBADA' || nuevoEstado == 'RECHAZADA'));
+    }
+
+    // 📌 Colección principal: solicitudes
+    match /solicitudes/{solicitudId} {
+      // Lectura general permitida
+      allow read: if true;
+
+      // Creación: Solo se permite si la solicitud inicia obligatoriamente en estado 'PENDIENTE'
+      allow create: if request.resource.data.estado == 'PENDIENTE';
+
+      // Actualización: Solo permitida si se respeta la máquina de estados estricta
+      allow update: if esTransicionValida(resource.data.estado, request.resource.data.estado);
+
+      // Eliminación: Prohibida para mantener la integridad de los registros
+      allow delete: if false;
+
+
+      // 📜 Subcolección auditada: historial (Trazabilidad inmutable)
+      match /historial/{historialId} {
+        allow read: if true;
+        
+        // Creación: Permite agregar nuevos eventos al historial durante el flujo
+        allow create: if request.resource.data.nuevoEstado != null &&
+                         request.resource.data.motivo != null;
+
+        // Inmutabilidad estricta: Jamás se puede modificar ni borrar un registro de auditoría
+        allow update, delete: if false;
+      }
+    }
+  }
+}

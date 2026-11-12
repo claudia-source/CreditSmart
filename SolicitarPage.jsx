@@ -1,6 +1,6 @@
 // src/pages/SolicitarPage.jsx
 import { useState, useEffect } from "react";
-import { guardarSolicitud } from "../firebase/solicitudes";
+import { guardarSolicitud } from "../solicitudes";
 import "../styles/SolicitarPage.css";
 
 export default function SolicitarPage() {
@@ -80,26 +80,26 @@ export default function SolicitarPage() {
      SUBMIT → FIRESTORE
   ================================= */
   const handleSubmit = async (e) => {
-    e.preventDefault();
+  e.preventDefault();
 
-    if (!validateForm()) {
-      alert("⚠️ Completa todos los campos obligatorios (*)");
-      return;
-    }
+  if (!validateForm()) {
+    alert("⚠️ Completa todos los campos obligatorios (*)");
+    return;
+  }
 
-    setEnviando(true);
+  setEnviando(true);
 
-    try {
-      console.log("📤 Enviando datos:", form);
+  try {
+    console.log("📤 Enviando datos:", form);
 
-      await guardarSolicitud({
-        ...form,
-        monto: form.monto.replace(/\./g, ""),
-        ingresos: form.ingresos.replace(/\./g, ""),
-        createdAt: new Date()
-      });
+    const res = await guardarSolicitud({
+      ...form,
+      monto: Number(form.monto.replace(/\./g, "")),
+      ingresos: form.ingresos ? Number(form.ingresos.replace(/\./g, "")) : 0,
+    });
 
-      alert("✅ Solicitud enviada correctamente");
+    if (res.ok) {
+      alert(`✅ Solicitud enviada correctamente. ID: ${res.id}`);
 
       setForm({
         nombre: "",
@@ -114,15 +114,17 @@ export default function SolicitarPage() {
         cargo: "",
         ingresos: ""
       });
-
-    } catch (error) {
-      console.error("❌ Error al guardar:", error);
-      alert("❌ Error al enviar la solicitud");
-    } finally {
-      setEnviando(false);
+    } else {
+      alert(`❌ Error al guardar la solicitud: ${res.error}`);
     }
-  };
 
+  } catch (error) {
+    console.error("❌ Error inesperado:", error);
+    alert("❌ Ocurrió un error inesperado al procesar el formulario.");
+  } finally {
+    setEnviando(false);
+  }
+};
   /* ================================
      RENDER
   ================================= */

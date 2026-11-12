@@ -1,150 +1,119 @@
- 💳 CreditSmart – Simulador y Solicitud de Créditos
+ CreditSmart - Tablero Administrativo de Gestión Crediticia 💳
 
-**Estudiante:** Claudia Liliana Cabrera Cabezas  
-**Curso:** Desarrollo Web con React  
-**Actividad:** S40 - EA3 Integración con Backend Firebase  
+Plataforma web para la administración, filtrado y auditoría de solicitudes de crédito en tiempo real. El proyecto está construido sobre una arquitectura Serverless / BaaS utilizando React en el frontend y Google Cloud Firestore como base de datos NoSQL, garantizando la trazabilidad e inmutabilidad de los estados mediante reglas de seguridad en el servidor (firestore.rules).
 
----
+🚀 Tecnologías y Herramientas
 
-## 📌 Descripción del proyecto
+Frontend: React 18, Vite 5, React Router Dom 6
 
-**CreditSmart** es una aplicación web desarrollada con **React** que permite a los usuarios:
+Backend & Persistence: Google Firebase Firestore (NoSQL, Serverless)
 
-- Visualizar los créditos disponibles
-- Simular un crédito según tipo, monto y plazo
-- Enviar una solicitud de crédito mediante un formulario
-- Guardar las solicitudes en **Firebase Firestore**
-- Consultar los datos almacenados en la nube
+Entorno de Desarrollo Local: Firebase Local Emulator Suite
 
-El proyecto integra **frontend + backend (Firebase)**, aplicando conceptos de componentes, hooks, formularios controlados, operaciones CRUD y persistencia de datos.
+Requisitos del Sistema: Node.js (v18+), Java JDK 21+ (LTS)
 
----
+🏛️ Arquitectura del Sistema y Máquina de Estados
 
-## 🛠️ Tecnologías utilizadas
+El sistema implementa una máquina de estados finitos que gestiona el ciclo de vida de cada solicitud de crédito:
 
-- **React** (Vite)
-- **React Router DOM**
-- **Firebase**
-  - Firestore Database
-- **HTML5**
-- **CSS3**
-- **JavaScript (ES6+)**
+PENDIENTE ---> EN_REVISIÓN ---> {APROBADA ---> RECHAZADA}
 
----
+Principios de Diseño:
 
-## 📂 Estructura del proyecto
+Desacoplamiento de Servicios (solicitudes.js): La vista en React no interactúa directamente con la SDK de Firestore para modificaciones de estado, sino que delega la lógica al módulo de servicios.
 
-credit-smart/
-│
-├── src/
-│ ├── components/
-│ ├── pages/
-│ ├── firebase/
-│ ├── styles/
-│ └── data/
-│
-├── screenshots/
-│ ├── inicio.png
-│ ├── simulador.png
-│ ├── solicitar.png
-│ ├── firestore.png
-│
-├── .env.example
-├── .gitignore
-├── package.json
-└── README.md
+Subcolección de Auditoría Inmutable (/historial): Cada cambio de estado registra un evento cronológico con justificación obligatoria.
 
-## ⚙️ Instalación y ejecución
+Seguridad Server-Side (firestore.rules): Las transiciones de estado y la política de solo lectura/escritura acumulativa (append-only) de la subcolección de historial están validadas a nivel de servidor, impidiendo modificaciones arbitrarias desde el cliente.
 
-1️⃣ Clonar el repositorio:
-```bash
-git clone https://github.com/tu-usuario/credit-smart.git
-2️⃣ Entrar al proyecto:
+⚙️ Requisitos Previos
+
+Antes de ejecutar la aplicación localmente, asegúrate de contar con:
+
+Java Development Kit (JDK) 21 o superior: Requerido por firebase-tools para ejecutar los emuladores locales.
+
+Verifica la versión con: java -version
+
+Node.js (v18 o superior):
+
+Verifica la versión con: node -v
+
+Firebase CLI instalado globalmente:
+
+npm install -g firebase-tools
 
 
-cd credit-smart
-3️⃣ Instalar dependencias:
+
+📦 Instalación y Configuración Local
+
+Clonar el repositorio:
+
+git clone https://github.com/claudia-source/CreditSmart.git
+cd CreditSmart
+
+
+
+Instalar dependencias:
 
 npm install
-4️⃣ Crear el archivo de variables de entorno:
 
-cp .env.example .env
-5️⃣ Ejecutar el proyecto:
+
+
+Configurar las variables de entorno:
+Verifica el archivo de configuración de Firebase (src/config.js o .env) para apuntar a tu proyecto o al emulador local.
+
+🛠️ Comandos y Scripts Disponibles
+
+Comando
+
+Descripción
 
 npm run dev
-🔐 Variables de entorno
-El proyecto utiliza variables de entorno para Firebase.
-Nunca se suben credenciales reales al repositorio.
 
- (.env.example):
+Inicia el servidor de desarrollo de Vite para el frontend.
 
-VITE_FIREBASE_API_KEY=xxxx
-VITE_FIREBASE_AUTH_DOMAIN=xxxx
-VITE_FIREBASE_PROJECT_ID=xxxx
-VITE_FIREBASE_STORAGE_BUCKET=xxxx
-VITE_FIREBASE_MESSAGING_SENDER_ID=xxxx
-VITE_FIREBASE_APP_ID=xxxx
-🔄 Funcionalidades implementadas
-✔️ Simulación de cuota mensual
+npm run emulator
 
-✔️ Formulario de solicitud controlado
+Inicia el emulador local de Firestore importando y exportando datos persistentes en ./emulator-data.
 
-✔️ Validaciones básicas
+npm run build
 
-✔️ Guardado de solicitudes en Firestore
+Compila el proyecto para producción en la carpeta dist.
 
-✔️ Manejo de estados de carga
+npm run preview
 
-✔️ Navegación con React Router
+Previsualiza localmente el build compilado.
 
-✔️ Componentes reutilizables
+🔄 Flujo de Trabajo con Emuladores y Persistencia Local
 
-✔️ Persistencia de datos en la nube
+Para no perder los datos de prueba entre sesiones del emulador:
 
-📸 Capturas de pantalla
-🏠 Página de inicio
+Iniciar el emulador con persistencia:
 
-📊 Simulador de crédito
-
-📝 Formulario de solicitud
-
-🔥 Firebase Firestore – Colección de solicitudes
-
-🎥 Video demostrativo
-(https://drive.google.com/file/d/1yWcvUDp6gKpXyl5r-SpAfZ_8FLY76Gs7/view?usp=sharing)
-
-Navegación de la app
-
-Simulación de crédito
-
-Envío de solicitud
-
-Registro de datos en Firebase Console
+npm run emulator
 
 
-🧪 Pruebas realizadas
-Creación de solicitudes
 
-Verificación de documentos en Firestore
+En una segunda terminal, iniciar la aplicación React:
 
-Manejo de errores de conexión
+npm run dev
 
-Pruebas de validación de formulario
 
-📌 Notas finales
-Este proyecto fue desarrollado con fines académicos.
 
-El código refleja el aprendizaje del curso.
+Al finalizar la sesión de trabajo, presiona Ctrl + C en la terminal del emulador para guardar automáticamente los datos modificados en la carpeta ./emulator-data.
 
-Firebase se utilizó dentro de los límites del plan gratuito.
+🔒 Despliegue de Reglas de Seguridad en Cloud
 
-© 2025 – CreditSmart | Desarrollado por Claudia Cabrera
+Si deseas publicar las reglas oficiales directamente en la consola de Firebase Cloud:
 
----
+firebase deploy --only firestore:rules
 
-1️⃣ Crear la carpeta **`screenshots/`**  
-2️⃣ Guardar las imágenes con estos nombres exactos:
-- `inicio.png`
-- `simulador.png`
-- `solicitar.png`
-- `firestore.png`
+
+
+🎓 Contexto Académico
+
+Este proyecto forma parte del trabajo de grado en la modalidad de Sistematización de Experiencias (bajo la metodología de Oscar Jara Holliday) para los programas de Tecnología en Desarrollo de Software / Ingeniería de Software y Datos de la Institución Universitaria Digital de Antioquia (IU Digital).
+
+Año: 2026
+
+Institución: IU Digital de Antioquia - Medellín, Colombia.

@@ -1,6 +1,6 @@
 // src/pages/SolicitarPage.jsx
 import { useState, useEffect } from "react";
-import { guardarSolicitud } from "../firebase/solicitudes";
+import { guardarSolicitud } from "../solicitudes";
 import "../styles/SolicitarPage.css";
 
 export default function SolicitarPage() {

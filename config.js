@@ -1,6 +1,5 @@
-// src/firebase/config.js
 import { initializeApp, getApps } from "firebase/app";
-import { getFirestore } from "firebase/firestore";
+import { getFirestore, connectFirestoreEmulator } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -19,3 +18,10 @@ const app = getApps().length === 0
 console.log("🔥 Firebase projectId:", firebaseConfig.projectId);
 
 export const db = getFirestore(app);
+
+
+//⚡ CONEXIÓN AL EMULADOR LOCAL
+if (import.meta.env.DEV && window.location.hostname === "localhost") {
+  connectFirestoreEmulator(db, "127.0.0.1", 8080);
+  console.log("⚡ Conectado exitosamente al emulador local de Firestore");
+}

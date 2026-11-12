@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
@@ -15,7 +15,7 @@ import "./styles/global.css";
 
 export default function App() {
   return (
-    <>
+    <BrowserRouter>
       <Navbar />
 
       <Routes>
@@ -37,8 +37,6 @@ export default function App() {
       </Routes>
 
       <Footer />
-    </>
+    </BrowserRouter>
   );
 }
-
-

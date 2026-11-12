@@ -1,11 +1,11 @@
 // src/data/creditsData.js
 
-import hipotecario from "../assets/logos/hipotecario.png";
-import vehicular from "../assets/logos/vehicular.png";
-import educativo from "../assets/logos/educativo.png";
-import personal from "../assets/logos/personal.png";
-import empresarial from "../assets/logos/empresarial.png";
-import pyme from "../assets/logos/pyme.png";
+import hipotecario from "../logos/hipotecario.png";
+import vehicular from "../logos/vehicular.png";
+import educativo from "../logos/educativo.png";
+import personal from "../logos/personal.png";
+import empresarial from "../logos/empresarial.png";
+import pyme from "../logos/pyme.png";
 
 const creditsData = [
   {

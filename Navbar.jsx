@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import logo from "../assets/logos/logo.png";
+import logo from "../logos/logo.png";
 import "../styles/Navbar.css";
 
 export default function Navbar() {
